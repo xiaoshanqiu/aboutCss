@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script src='js/jquery-1.11.3.js'></script>
+	<script src='js/jquery.color.js'></script>
+<style>
+	.box{
+		height: 100px;
+		width: 100px;
+		background-color: green;
+	}
+	.active{
+		background-color: pink;
+	}
+	.active{
+		background-color: pink!important;
+	}
+	.bg{
+		background: black;
+	}
+</style>
+</head>
+<body>
+	<p style="background-color: pink;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis vero sed, quae nam blanditiis repellendus, ad sequi placeat ducimus facere molestiae repellat aspernatur architecto porro harum hic! Quod, atque, dolorem.</p>
+	<button class="btn">dianji</button>
+	<div class="box"></div>
+<script>
+	$(function(){
+		 /*获取，设置css样式*/
+		alert($('p').css('backgroundColor'))//获取属性
+		$('p').css('background-color','yellow')//设置样式
+		$('p').css({backgroundColor:'yellow',fontSize:'30px'})//object格式
+		 
+		/*动画*/
+		$('#box').animate({'height':'200px','width':'200px'},2000,function(){
+			$('#box').css('backgroundColor','pink')
+		})
+		$('#box').animate({'height':'200px'},2000).animate({'width':'200px'},2000)
+		/*点击暂停*/
+		$('.btn').click(function(){
+			$('#box').stop()//停止一边
+			$('#box').stop(true)//都能停止
+			$('#box').finish();//直接到达指定位置
+		})
+		/*点击变色，添加class名或移出类名，切换类名*/
+		$('.btn').click(function(){//用!important;给class名提高权重
+			$('#box').addClass('active');//若是都是类名则不用提高权重
+			$('#box').removeClass('active');
+			$('#box').toggleClass('active');
+		})
+		
+		$('.box').get(0).className += ' active';//添加多个类名
+		$('.btn').click(function(){
+			$('.box').get(0).className += ' bg';
+		})
+	})
+</script>
+</body>
+</html>
